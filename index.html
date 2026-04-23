@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Procureon Global — Structured Cross-Border Trade & Sourcing</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0F2B46;
+    --black: #0A0A0A;
+    --gold: #E3A93B;
+    --white: #F4F6F8;
+    --muted: #7A93A8;
+    --border: rgba(227,169,59,0.18);
+    --glass: rgba(15,43,70,0.55);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; }
+
+  /* ─── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 72px;
+    background: rgba(10,10,10,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(227,169,59,0.1);
+    transition: background 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 2.4rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    border: none;
+    padding: 0.55rem 1.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+
+  /* ─── HERO ─────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    background: linear-gradient(135deg, var(--navy) 0%, #071929 55%, var(--black) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 120px 5vw 80px;
+  }
+
+  .hero-grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(227,169,59,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(227,169,59,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+  .hero-orb-1 {
+    width: 520px; height: 520px;
+    background: rgba(227,169,59,0.07);
+    top: -120px; right: -80px;
+  }
+  .hero-orb-2 {
+    width: 360px; height: 360px;
+    background: rgba(15,43,70,0.6);
+    bottom: -60px; left: 10%;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 760px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 32px; height: 1px; background: var(--gold);
+  }
+
+  .hero-h1 {
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+  }
+  .hero-h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    opacity: 0; animation: fadeUp 0.7s 0.6s forwards;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s 0.8s forwards;
+  }
+
+  .btn-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    border: none;
+    padding: 1rem 2.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .btn-outline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid rgba(244,246,248,0.3);
+    padding: 1rem 2.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(244,246,248,0.08);
+    opacity: 0; animation: fadeUp 0.7s 1s forwards;
+    flex-wrap: wrap;
+  }
+  .hero-stat-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+  .hero-stat-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* ─── SECTION BASE ─────────────────────────────────── */
+  section { padding: 100px 5vw; }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-body {
+    font-size: 0.97rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 620px;
+  }
+
+  /* ─── ABOUT ─────────────────────────────────────────── */
+  #about { background: var(--navy); position: relative; overflow: hidden; }
+  #about::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(227,169,59,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .about-pillars {
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+
+  .about-pillar {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    background: rgba(15,43,70,0.35);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .about-pillar:hover { border-color: rgba(227,169,59,0.4); }
+
+  .pillar-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .pillar-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.45rem;
+    letter-spacing: 0.02em;
+  }
+
+  .pillar-text {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── WHAT WE DO ────────────────────────────────────── */
+  #services { background: var(--black); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 4rem;
+    background: rgba(227,169,59,0.12);
+  }
+
+  .service-card {
+    background: #0c0c0c;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: #111; }
+
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.4s;
+  }
+  .service-card:hover::before { height: 100%; }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.8rem;
+  }
+
+  .service-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .service-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+  }
+
+  .service-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ─── CATEGORIES ────────────────────────────────────── */
+  #categories { background: var(--navy); }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .category-card {
+    border: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    background: rgba(10,10,10,0.5);
+  }
+  .category-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+
+  .category-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .category-card:hover::after { transform: scaleX(1); }
+
+  .category-icon {
+    width: 56px; height: 56px;
+    background: rgba(227,169,59,0.1);
+    border: 1px solid rgba(227,169,59,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.8rem;
+  }
+  .category-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .category-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .category-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── PROCESS ───────────────────────────────────────── */
+  #process { background: var(--black); }
+
+  .process-steps {
+    display: flex;
+    gap: 0;
+    margin-top: 4rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 28px; left: 0; right: 0;
+    height: 1px; background: var(--border);
+    z-index: 0;
+  }
+
+  .process-step {
+    flex: 1;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .process-step:first-child { padding-left: 0; }
+  .process-step:last-child { padding-right: 0; }
+
+  .step-dot {
+    width: 56px; height: 56px;
+    background: var(--black);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    transition: background 0.3s, border-color 0.3s;
+    position: relative;
+    z-index: 2;
+  }
+  .process-step:hover .step-dot {
+    background: rgba(227,169,59,0.12);
+    border-color: var(--gold);
+  }
+
+  .step-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  .step-text {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ─── TESTIMONIALS ──────────────────────────────────── */
+  #testimonials { background: #080e16; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .testimonial-card {
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    background: rgba(15,43,70,0.2);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .testimonial-card:hover { border-color: rgba(227,169,59,0.35); }
+
+  .quote-mark {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: rgba(227,169,59,0.2);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .testimonial-text {
+    font-size: 0.9rem;
+    color: var(--white);
+    line-height: 1.75;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 1.8rem;
+  }
+
+  .testimonial-divider {
+    width: 28px; height: 1px; background: var(--gold); margin-bottom: 1rem;
+  }
+
+  .testimonial-author {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ─── BUSINESS MODEL ────────────────────────────────── */
+  #model { background: var(--navy); }
+
+  .model-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .model-points {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .model-point {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(10,10,10,0.4);
+    border-left: 2px solid var(--gold);
+  }
+
+  .model-point-text {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .model-point-text strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .model-visual {
+    position: relative;
+  }
+
+  .model-badge {
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    background: rgba(10,10,10,0.5);
+    text-align: center;
+  }
+
+  .model-badge-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .model-badge-line {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 2.2;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .model-badge-line + .model-badge-line { border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 0; }
+
+  .model-badge-line span { color: var(--white); font-weight: 400; }
+
+  /* ─── CONTACT ───────────────────────────────────────── */
+  #contact { background: var(--black); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-top: 3rem;
+  }
+
+  .contact-info {
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+
+  .contact-detail {
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+
+  .contact-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .contact-value {
+    font-size: 0.92rem;
+    color: var(--white);
+    font-weight: 300;
+  }
+
+  .contact-value a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-value a:hover { color: var(--gold); }
+
+  .btn-whatsapp {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: #1a2f1e;
+    border: 1px solid rgba(37,211,102,0.3);
+    padding: 0.9rem 1.8rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-whatsapp:hover { border-color: rgba(37,211,102,0.7); background: #1f3824; }
+
+  .btn-whatsapp svg { width: 18px; height: 18px; fill: #25D366; }
+
+  .contact-form {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+  .form-group {
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-input, .form-textarea {
+    background: rgba(15,43,70,0.2);
+    border: 1px solid rgba(122,147,168,0.2);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 300;
+    padding: 0.85rem 1.1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(122,147,168,0.5); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+
+  /* ─── FOOTER ────────────────────────────────────────── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid var(--border);
+    padding: 3rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.06em;
+  }
+  .footer-brand span { color: var(--gold); }
+
+  .footer-tagline {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    font-style: italic;
+  }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(122,147,168,0.5);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── ANIMATIONS ────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .about-grid, .model-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid, .categories-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .process-steps { flex-direction: column; gap: 2rem; }
+    .process-steps::before { display: none; }
+    .process-step { padding: 0; text-align: left; display: flex; gap: 1.5rem; align-items: flex-start; }
+    .step-dot { margin: 0; flex-shrink: 0; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 70px 5vw; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Procureon <span>Global</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Connect With Us</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Procureon Global</div>
+    <h1 class="hero-h1">
+      Structured Cross-Border<br>
+      <em>Trade &amp; Sourcing</em>
+    </h1>
+    <p class="hero-sub">
+      Connecting verified suppliers with qualified buyers through disciplined, risk-controlled trade execution.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Connect With Us</a>
+      <a href="#contact" class="btn-outline">Submit Requirement</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-val">ASEAN</div>
+        <div class="hero-stat-label">Supply Networks</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">India</div>
+        <div class="hero-stat-label">Primary Demand Market</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">3</div>
+        <div class="hero-stat-label">Core Trade Categories</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">About</div>
+  <h2 class="section-title fade-in">International Sourcing,<br>Executed with Discipline</h2>
+  <p class="section-body fade-in">Procureon Global operates as a structured B2B trade intermediary, facilitating cross-border sourcing between verified ASEAN-based suppliers and qualified buyers across India. Our approach is built on compliance-first trade execution — structured to eliminate ambiguity and reduce transactional risk at every stage.</p>
+
+  <div class="about-grid" style="margin-top: 3rem;">
+    <div class="about-pillars">
+      <div class="about-pillar fade-in">
+        <div class="pillar-num">01</div>
+        <div>
+          <div class="pillar-title">Cross-Border Sourcing</div>
+          <div class="pillar-text">We identify, vet, and engage suppliers across ASEAN markets — ensuring product quality, commercial viability, and regulatory compliance before any buyer engagement begins.</div>
+        </div>
+      </div>
+      <div class="about-pillar fade-in">
+        <div class="pillar-num">02</div>
+        <div>
+          <div class="pillar-title">ASEAN Supply → India Demand</div>
+          <div class="pillar-text">Our sourcing network spans Southeast Asia, with primary trade corridors mapped to industrial and manufacturing demand centres across India, enabling efficient, scalable supply flows.</div>
+        </div>
+      </div>
+      <div class="about-pillar fade-in">
+        <div class="pillar-num">03</div>
+        <div>
+          <div class="pillar-title">Compliance-First Execution</div>
+          <div class="pillar-text">Every transaction is structured around regulatory alignment, documentation integrity, and commercial clarity — from initial mapping through to order completion.</div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-in" style="border: 1px solid var(--border); padding: 3rem; background: rgba(10,10,10,0.4);">
+      <div style="font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;">Our Mandate</div>
+      <div style="font-size: 1.35rem; font-weight: 300; line-height: 1.7; color: var(--white); font-style: italic; margin-bottom: 2rem;">
+        "Structured trade facilitation — bridging the gap between verified supply and qualified demand, across borders."
+      </div>
+      <div style="height: 1px; background: var(--border); margin-bottom: 2rem;"></div>
+      <div style="font-size: 0.82rem; color: var(--muted); line-height: 1.8; font-weight: 300;">
+        We do not hold inventory. We do not operate speculatively. Every engagement is transaction-aligned — initiated by a defined requirement, executed through a verified supply chain.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-eyebrow fade-in">What We Do</div>
+  <h2 class="section-title fade-in">Three Pillars of<br>Structured Trade</h2>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <div class="service-title">Supplier Identification &amp; Verification</div>
+      <div class="service-text">We conduct structured due diligence across ASEAN supply markets — assessing manufacturing capacity, compliance credentials, and commercial reliability before any supplier is introduced to a buyer relationship.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      </div>
+      <div class="service-title">Buyer Mapping &amp; Qualification</div>
+      <div class="service-text">We engage only with buyers whose requirements are defined, commercially viable, and operationally ready. This qualification layer ensures that every sourcing exercise is purposeful and transaction-aligned.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+      </div>
+      <div class="service-title">Trade Facilitation &amp; Execution</div>
+      <div class="service-text">From commercial structuring to order execution and documentation, we manage the full trade lifecycle — ensuring clarity, compliance, and accountability at every stage of the international transaction.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section-eyebrow fade-in">Product Categories</div>
+  <h2 class="section-title fade-in">Sectors We Facilitate</h2>
+  <p class="section-body fade-in">Our sourcing expertise is focused across three industrial categories, selected for cross-border trade viability and consistent buyer demand within the Indian manufacturing sector.</p>
+  <div class="categories-grid" style="margin-top: 3.5rem;">
+    <div class="category-card fade-in">
+      <div class="category-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+      </div>
+      <div class="category-name">Packaging Materials</div>
+      <div class="category-desc">Industrial-grade packaging solutions for manufacturing, logistics, and distribution applications — sourced to specification across ASEAN supply chains.</div>
+    </div>
+    <div class="category-card fade-in">
+      <div class="category-icon">
+        <svg viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <div class="category-name">Industrial Hardware</div>
+      <div class="category-desc">Fasteners, fittings, structural components, and precision hardware for engineering and manufacturing environments — verified for quality and compliance standards.</div>
+    </div>
+    <div class="category-card fade-in">
+      <div class="category-icon">
+        <svg viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+      </div>
+      <div class="category-name">Industrial Consumables</div>
+      <div class="category-desc">Maintenance materials, operational supplies, and process-critical consumables for industrial facilities — sourced at scale with documentation integrity.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-eyebrow fade-in">Our Process</div>
+  <h2 class="section-title fade-in">From Requirement<br>to Execution</h2>
+  <p class="section-body fade-in">A structured, five-stage process governs every trade engagement — ensuring transparency, compliance, and accountability from first contact to transaction completion.</p>
+
+  <div class="process-steps" style="margin-top: 5rem;">
+    <div class="process-step fade-in">
+      <div class="step-dot">01</div>
+      <div>
+        <div class="step-title">Requirement Mapping</div>
+        <div class="step-text">Buyer requirements are documented in full — specifications, volumes, timelines, and compliance criteria — establishing a clear brief for sourcing.</div>
+      </div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-dot">02</div>
+      <div>
+        <div class="step-title">Supplier Verification</div>
+        <div class="step-text">Suppliers are assessed against defined criteria including capacity, certifications, track record, and regulatory standing.</div>
+      </div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-dot">03</div>
+      <div>
+        <div class="step-title">Commercial Structuring</div>
+        <div class="step-text">Trade terms, pricing frameworks, and documentation protocols are formalised — ensuring both parties operate within a defined commercial structure.</div>
+      </div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-dot">04</div>
+      <div>
+        <div class="step-title">Order Execution</div>
+        <div class="step-text">The trade order is executed with active coordination — covering logistics, compliance documentation, and supplier-buyer communication.</div>
+      </div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-dot">05</div>
+      <div>
+        <div class="step-title">Transaction Completion</div>
+        <div class="step-text">Full documentation is finalised, delivery is confirmed, and the transaction is formally closed — with records maintained for audit and compliance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-eyebrow fade-in">Client Perspectives</div>
+  <h2 class="section-title fade-in">What Our Clients Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-in">
+      <span class="quote-mark">"</span>
+      <p class="testimonial-text">Clear communication, structured approach, and reliable coordination throughout the sourcing process. The team understood our requirements from the outset.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">Procurement Manager<br>Industrial Packaging Firm</div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <span class="quote-mark">"</span>
+      <p class="testimonial-text">Procureon helped us identify the right supplier quickly without unnecessary back-and-forth. The verification process gave us confidence before we committed.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">Director<br>Manufacturing Company</div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <span class="quote-mark">"</span>
+      <p class="testimonial-text">The process was well-structured and transparent. Execution timelines were clearly maintained, and documentation was handled professionally throughout.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">Operations Head<br>Engineering Firm</div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section id="model">
+  <div class="section-eyebrow fade-in">Business Model</div>
+  <h2 class="section-title fade-in">Trade Without Speculation</h2>
+  <div class="model-grid">
+    <div>
+      <p class="section-body fade-in">Procureon Global operates on a transaction-aligned model. Every engagement is driven by a defined buyer requirement — we do not hold inventory, we do not speculate on market movements, and we do not engage in unsolicited supply-push activity.</p>
+      <div class="model-points">
+        <div class="model-point fade-in">
+          <div class="model-point-text">
+            <strong>Structured Trade Only</strong>
+            Each engagement begins with a documented buyer requirement. No speculative sourcing, no unsolicited proposals.
+          </div>
+        </div>
+        <div class="model-point fade-in">
+          <div class="model-point-text">
+            <strong>No Inventory Exposure</strong>
+            We facilitate trade between verified parties. We carry no stock and assume no inventory risk.
+          </div>
+        </div>
+        <div class="model-point fade-in">
+          <div class="model-point-text">
+            <strong>Order-Based Execution</strong>
+            Every sourcing exercise is initiated by a confirmed requirement and executed through a structured order process.
+          </div>
+        </div>
+        <div class="model-point fade-in">
+          <div class="model-point-text">
+            <strong>Compliance-First Approach</strong>
+            Regulatory alignment and documentation integrity are non-negotiable at every stage of the trade lifecycle.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="model-visual fade-in">
+      <div class="model-badge">
+        <div class="model-badge-title">Trade Principles</div>
+        <div style="height: 1px; background: var(--border); margin-bottom: 1.5rem;"></div>
+        <div class="model-badge-line"><span>Structured</span> — Every trade is defined before execution</div>
+        <div class="model-badge-line"><span>Verified</span> — Suppliers and buyers are qualified, not assumed</div>
+        <div class="model-badge-line"><span>Documented</span> — Full compliance trail maintained throughout</div>
+        <div class="model-badge-line"><span>Transparent</span> — No hidden layers in the trade chain</div>
+        <div class="model-badge-line"><span>Accountable</span> — Execution against defined timelines and terms</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow fade-in">Contact</div>
+  <h2 class="section-title fade-in">Submit a Requirement<br>or Connect With Us</h2>
+  <div class="contact-grid">
+    <div class="contact-info fade-in">
+      <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.8; font-weight: 300; max-width: 400px;">
+        If you have a specific sourcing requirement or wish to explore how Procureon Global can support your trade objectives, we welcome structured enquiries.
+      </p>
+      <div class="contact-detail">
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:info@procureonglobal.com">info@procureonglobal.com</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-value" style="margin-top: 0.5rem;">
+          <a class="btn-whatsapp" href="https://wa.me/message" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Connect on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-label">Scope</div>
+        <div class="contact-value" style="font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-weight: 300;">Cross-border B2B trade enquiries only.<br>Industrial and manufacturing sectors.<br>ASEAN supply — India demand corridors.</div>
+      </div>
+    </div>
+
+    <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="name">Full Name</label>
+          <input class="form-input" id="name" type="text" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="company">Company</label>
+          <input class="form-input" id="company" type="text" placeholder="Company name" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input class="form-input" id="email" type="email" placeholder="your@company.com" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="requirement">Trade Requirement</label>
+        <textarea class="form-textarea" id="requirement" placeholder="Briefly describe your sourcing requirement — product category, approximate volume, and timeline." required></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="align-self: flex-start; border: none;">Submit Requirement</button>
+      <div id="form-msg" style="font-size:0.82rem; color:var(--gold); display:none; margin-top: 0.5rem;">Your enquiry has been submitted. We will respond within 2 business days.</div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Procureon <span>Global</span></div>
+    <div class="footer-tagline" style="margin-top: 0.5rem;">Structured B2B Trade. No Speculation. No Inventory Risk.</div>
+  </div>
+  <div class="footer-copy">© 2025 Procureon Global. All rights reserved.</div>
+</footer>
+
+<script>
+  // Intersection observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Hamburger toggle
+  const ham = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  ham && ham.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '72px';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = 'rgba(10,10,10,0.97)';
+    navLinks.style.padding = '1.5rem 5vw';
+    navLinks.style.borderBottom = '1px solid rgba(227,169,59,0.1)';
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const msg = document.getElementById('form-msg');
+    msg.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { msg.style.display = 'none'; }, 6000);
+  }
+</script>
+</body>
+</html>
