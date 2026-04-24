@@ -10,48 +10,61 @@
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     color: #fff;
-    background: url('assets/bg.png') no-repeat center center/cover;
-    height: 100vh;
+
+    /* FIXED BACKGROUND ISSUE */
+    background: url('assets/bg1.png') no-repeat center center;
+    background-size: contain;   /* shows full image */
+    background-color: #0b0f1a;  /* fills empty space */
+    
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
   }
 
+  /* DARK OVERLAY */
   .overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    z-index: 1;
   }
 
+  /* LOGO TOP LEFT */
+  .logo {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    width: 120px;
+    z-index: 3;
+  }
+
+  /* MAIN CONTENT CENTER */
   .container {
     position: relative;
-    text-align: center;
-    max-width: 600px;
-    padding: 40px;
     z-index: 2;
-    animation: fadeIn 1.5s ease;
-  }
-
-  .logo {
-    width: 140px;
-    margin-bottom: 20px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 1.2s ease;
   }
 
   h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+    font-size: 34px;
     color: #d4af37;
+    margin-bottom: 10px;
   }
 
   p {
-    font-size: 16px;
     color: #ccc;
+    font-size: 16px;
     line-height: 1.6;
   }
 
+  /* WHATSAPP BUTTON */
   .cta {
     margin-top: 25px;
     display: inline-block;
@@ -68,6 +81,7 @@
     background: #1ebe5d;
   }
 
+  /* BACK LINK */
   .back {
     display: block;
     margin-top: 15px;
@@ -84,6 +98,23 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* MOBILE OPTIMIZATION */
+  @media (max-width: 768px) {
+    body {
+      background-size: cover; /* better for mobile */
+    }
+
+    .logo {
+      width: 90px;
+      top: 15px;
+      left: 15px;
+    }
+
+    h1 {
+      font-size: 26px;
+    }
+  }
 </style>
 </head>
 
@@ -91,25 +122,25 @@
 
 <div class="overlay"></div>
 
+<!-- LOGO -->
+<img src="assets/logo.png" alt="Procureon Global" class="logo">
+
+<!-- CONTENT -->
 <div class="container">
 
-  <!-- LOGO -->
-  <img src="assets/logo.png" alt="Procureon Global" class="logo">
-
-  <!-- MESSAGE -->
   <h1>Thank You</h1>
 
   <p>Your enquiry has been successfully submitted.</p>
   <p>Our team will contact you within <strong>24 hours</strong>.</p>
 
   <!-- WHATSAPP CTA -->
-  <a href="https://wa.me/919834966718?text=Hello%20Procureon%20Global%2C%20I%20have%20submitted%20a%20trade%20enquiry." 
-     target="_blank" 
+  <a href="https://wa.me/919834966718?text=Hello%20Procureon%20Global%2C%20I%20have%20submitted%20a%20trade%20enquiry."
+     target="_blank"
      class="cta">
      Chat on WhatsApp
   </a>
 
-  <!-- BACK TO SITE -->
+  <!-- BACK -->
   <a href="index.html" class="back">← Back to Home</a>
 
 </div>
